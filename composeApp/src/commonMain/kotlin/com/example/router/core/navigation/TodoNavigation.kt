@@ -45,7 +45,6 @@ fun TodoNavigation(
         entryProvider = entryProvider {
             entry<Route.Todo.TodoList>{
                 TodoListScreen(
-                    viewModel = viewModel { TodoListViewModel() },
                     onTodoCLick = {
                         todoBackStack.add(Route.Todo.TodoDetail(it))
                     }

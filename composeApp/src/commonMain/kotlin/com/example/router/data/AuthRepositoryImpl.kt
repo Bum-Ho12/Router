@@ -4,7 +4,7 @@ import com.example.router.domain.AuthRepository
 
 class AuthRepositoryImpl(): AuthRepository {
     override suspend fun login(): Int {
-        return
+        TODO( "Not yet implemented" )
     }
 
     override suspend fun register(): Int {

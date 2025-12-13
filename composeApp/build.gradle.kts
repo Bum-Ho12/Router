@@ -84,6 +84,17 @@ dependencies {
     add("kspJvm", libs.koin.ksp.compiler)  // Add this for JVM target
 }
 
+tasks.configureEach {
+    if (name == "kspDebugKotlinAndroid" ||
+        name == "kspReleaseKotlinAndroid" ||
+        name == "kspAndroidDebug" ||
+        name == "kspAndroidRelease" ||
+        name.startsWith("kspIos") ||
+        name.startsWith("kspJvm")) {
+        dependsOn("kspCommonMainKotlinMetadata")
+    }
+}
+
 // Metadata processing runs first
 tasks.withType<KotlinCompilationTask<*>>().configureEach {
     if (name != "kspCommonMainKotlinMetadata") {
