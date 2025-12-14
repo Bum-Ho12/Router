@@ -13,11 +13,12 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.router.presentation.viewmodels.LoginViewModel
 import com.example.router.presentation.viewmodels.SharedAuthViewModel
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun LoginScreen(
-    viewModel: LoginViewModel,
-    sharedAuthViewModel: SharedAuthViewModel,
+    viewModel: LoginViewModel = koinViewModel(),
+    sharedAuthViewModel: SharedAuthViewModel = koinViewModel(),
     onLogin: () -> Unit,
     onRegisterClick:() -> Unit,
     modifier: Modifier = Modifier,

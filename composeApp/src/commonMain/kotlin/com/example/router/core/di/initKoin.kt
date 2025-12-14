@@ -1,5 +1,6 @@
 package com.example.router.core.di
 
+import com.example.router.core.di.annotation.AuthModule
 import com.example.router.core.di.annotation.TodoModule
 import org.koin.core.context.startKoin
 import org.koin.dsl.KoinAppDeclaration
@@ -10,7 +11,8 @@ fun initKoin(config: KoinAppDeclaration? = null){
         config?.invoke(this)
         modules(
             AppModule().module,
-            TodoModule().module
+            TodoModule().module,
+            AuthModule().module,
         )
     }
 }

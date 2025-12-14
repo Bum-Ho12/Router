@@ -10,10 +10,8 @@ import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import androidx.savedstate.serialization.SavedStateConfiguration
-import com.example.router.core.navigation.Route
 import com.example.router.presentation.screens.auth.LoginScreen
-import com.example.router.presentation.viewmodels.LoginViewModel
-import com.example.router.presentation.viewmodels.RegisterViewModel
+import com.example.router.presentation.screens.auth.RegisterScreen
 import com.example.router.presentation.viewmodels.SharedAuthViewModel
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.polymorphic
@@ -35,7 +33,6 @@ fun AuthNavigation(
         Route.Auth.Login
     )
 
-    val sharedAuthViewModel = viewModel { SharedAuthViewModel() }
     NavDisplay(
         backStack = authBackStack,
         modifier = modifier,
@@ -46,8 +43,6 @@ fun AuthNavigation(
         entryProvider = entryProvider {
             entry<Route.Auth.Login>{
                 LoginScreen(
-                    viewModel = viewModel { LoginViewModel() },
-                    sharedAuthViewModel = sharedAuthViewModel,
                     onLogin = onLogin,
                     onRegisterClick = {
                         authBackStack.add(Route.Auth.Register)
@@ -56,10 +51,7 @@ fun AuthNavigation(
             }
 
             entry<Route.Auth.Register>{
-                LoginScreen(
-                    viewModel = viewModel { RegisterViewModel() },
-                    sharedAuthViewModel = sharedAuthViewModel,
-                )
+                RegisterScreen()
             }
         }
     )

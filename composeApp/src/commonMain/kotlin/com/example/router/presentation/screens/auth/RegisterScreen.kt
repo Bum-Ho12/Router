@@ -13,11 +13,12 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.router.presentation.viewmodels.RegisterViewModel
 import com.example.router.presentation.viewmodels.SharedAuthViewModel
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
-fun LoginScreen(
-    viewModel: RegisterViewModel,
-    sharedAuthViewModel: SharedAuthViewModel,
+fun RegisterScreen(
+    viewModel: RegisterViewModel = koinViewModel(),
+    sharedAuthViewModel: SharedAuthViewModel = koinViewModel(),
     modifier: Modifier = Modifier,
 ){
     val localCounter by viewModel.counter.collectAsStateWithLifecycle()

@@ -34,7 +34,6 @@ fun TodoNavigation(
         Route.Todo.TodoList
     )
 
-    val sharedAuthViewModel = viewModel { SharedAuthViewModel() }
     NavDisplay(
         backStack = todoBackStack,
         modifier = modifier,

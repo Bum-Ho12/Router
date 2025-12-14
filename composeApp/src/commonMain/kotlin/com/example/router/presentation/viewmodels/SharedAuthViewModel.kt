@@ -1,10 +1,16 @@
 package com.example.router.presentation.viewmodels
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.router.domain.AuthRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
-class SharedAuthViewModel: ViewModel() {
+class SharedAuthViewModel(
+    private val repository: AuthRepository
+): ViewModel() {
     private val _counter = MutableStateFlow(0)
     val counter = _counter.asStateFlow()
 
@@ -13,7 +19,10 @@ class SharedAuthViewModel: ViewModel() {
     }
 
     fun bump(){
-        _counter.value++
+        viewModelScope.launch {
+            val increment = repository.sharedAuth(counter.value)
+            _counter.update { increment }
+        }
     }
 
     override fun onCleared() {
